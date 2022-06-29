@@ -40,15 +40,13 @@ ON a.actor_id = f.actor_id
 GROUP BY last_name
 HAVING count(last_name)
 ORDER BY count(last_name) DESC;
-#Challenge14 (When are all the Academy Dinosaur rentals due back)
-SELECT inventory_id,return_date
-FROM rental WHERE inventory_id IN (
-	SELECT DISTINCT inventory_id
-    FROM inventory
-    WHERE film_id =(
-		SELECT DISTINCT film_id
-        FROM film
-        WHERE title = 'ACADEMY DINOSAUR'));
+#Challenge14
+SELECT i.inventory_id,f.title,r.rental_date, DATE_ADD(rental_date,INTERVAL rental_duration DAY) AS ReturnDate
+FROM rental r
+JOIN inventory i ON r.inventory_id = i.inventory_id
+JOIN film f ON i.film_id = f.film_id
+WHERE f.title = 'ACADEMY DINOSAUR'
+AND return_date IS NULL;
 #Challenge15
 SELECT avg(length) AS AverageRunTime FROM film;
 #Challenge16
