@@ -33,13 +33,12 @@ SELECT last_name, count(*)
 FROM actor GROUP BY last_name 
 HAVING count(last_name)>1 ORDER BY count(last_name) DESC;
 #Challenge13
-SELECT a.first_name,a.last_name, count(last_name) AS No_of_films
+SELECT a.first_name,a.last_name, count(f.film_id) AS No_of_films
 FROM actor a
 JOIN film_actor f
 ON a.actor_id = f.actor_id
-GROUP BY last_name
-HAVING count(last_name)
-ORDER BY count(last_name) DESC;
+GROUP BY f.actor_id
+ORDER BY count(f.film_id) DESC;
 #Challenge14
 SELECT i.inventory_id,f.title,r.rental_date, DATE_ADD(rental_date,INTERVAL rental_duration DAY) AS ReturnDate
 FROM rental r
