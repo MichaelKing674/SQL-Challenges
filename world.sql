@@ -75,7 +75,8 @@ SELECT Name,pop_surfacearea_ratio
 FROM ratios
 WHERE pop_surfacearea_ratio != 0
 GROUP BY Name
-ORDER BY pop_surfacearea_ratio ASC;
+ORDER BY pop_surfacearea_ratio ASC
+LIMIT 10;
 #Challenge14
 SELECT DISTINCT Language
 FROM countrylanguage
